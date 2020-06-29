@@ -1,6 +1,4 @@
 // SHOW MOBILE MENU
-// immediately invoked function expression
-
 
 (function() {
   const menuInfo = document.getElementById("menu-info");
@@ -18,8 +16,6 @@
 })();
 
 // SHOW OFFERs CONTAINER
-// immediately invoked function expression
-
 
 (function() {
   const viewOffers = document.getElementById("view-offers");
@@ -36,10 +32,14 @@
   });
 })();
 
-
-
 // PRICE and OFFERS - offers scroller
 
+
+
+
+
+(function() {
+    
 const data = [
   {
     number: '1 from 3',
@@ -64,7 +64,7 @@ const data = [
   },
 ];
 
-const offers = offerIterator(data);
+    const offers = offerIterator(data);
 
 // Call first offer
 nextOffer();
@@ -79,27 +79,22 @@ function nextOffer() {
   if(currentOffer !== undefined) {
     document.getElementById('offerDisplay').innerHTML = `
     <ul class="list-group">
-        <li class="list-group-item">Offer Number: ${currentOffer.number}</li>
-        <li class="list-group-item">Title: ${currentOffer.name}</li>
-        <li class="list-group-item">Description: ${currentOffer.description}</li>
+        <li class="list-group-item">${currentOffer.number}</li>
+        <li class="list-group-item">${currentOffer.name}</li>
+        <li class="list-group-item">${currentOffer.description}</li>
       </ul>
     `;
 
     document.getElementById('imageDisplay').innerHTML = `<img src="${currentOffer.image}" alt="${currentOffer.alt}">`;
   } 
     
-      
-    else {
+      else {
     // No more offers
     window.description.reload();
-        
-    function reloadThePage(){
-    window.location.reload();
-        } 
   }
 }
 
-// offer Iterator
+// Offer Iterator
 function offerIterator(offers) {
   let nextIndex = 0;
 
@@ -111,3 +106,140 @@ function offerIterator(offers) {
     }
   };
 }
+})();
+
+
+(function() {
+    
+const dataBg = [
+  {
+    numberBg: '1 от 3',
+    nameBg: '10% намаление на градинска мебел.',
+    descriptionBg: 'Градинска мебел със седемгодишна гаранция. Налична в различни цветове и подходяща за всякакви метереологични условия. ',
+    imageBg: 'primary/img/7_1_gallery.jpg',
+    altBg: '10% намаление на градинска мебел'
+  },
+  {
+    numberBg: '2 от 3',
+    nameBg: '10% намаление на осветление за алеи.',
+    descriptionBg: 'Осветление за алеи - стил античен. Подобрява видимостта през нощта.',
+    imageBg: 'primary/img/7_7_gallery.jpg',
+    altBg: '10% намаление на осветление за алеи.'
+  },
+  {
+    numberBg: '3 от 3',
+    nameBg: '15% намаление на ароматни растения.',
+    descriptionBg: '15% намаление на ароматни растения - цветя и храсти за вашия двор или градина.',
+    imageBg: 'primary/img/7_2_gallery.jpg',
+    altBg: '15% намаление на ароматни растения'
+  },
+];
+
+    const offersBg = offerIteratorBg(dataBg);
+
+// Call first offer
+nextOfferBg();
+
+// Next Event
+document.getElementById('next').addEventListener('click', nextOfferBg);
+
+// Next offer Display
+function nextOfferBg() {
+  const currentOfferBg = offersBg.next().value;
+
+  if(currentOfferBg !== undefined) {
+    document.getElementById('offerDisplay').innerHTML = `
+    <ul class="list-group">
+        <li class="list-group-item">${currentOfferBg.numberBg}</li>
+        <li class="list-group-item">${currentOfferBg.nameBg}</li>
+        <li class="list-group-item">${currentOfferBg.descriptionBg}</li>
+      </ul>
+    `;
+
+    document.getElementById('imageDisplay').innerHTML = `<img src="${currentOfferBg.image}" alt="${currentOfferBg.alt}">`;
+  } 
+    
+      else {
+    // No more offers
+    window.description.reload();
+  }
+}
+
+// Offer Iterator
+function offerIteratorBg(offersBg) {
+  let nextIndexBg = 0;
+
+  return {
+    next: function() {
+      return nextIndexBg < offersBg.length ? 
+      { value: offersBg[nextIndexBg++], done: false } : 
+      { done: true }
+    }
+  };
+}
+})();
+
+
+
+
+
+
+
+
+
+
+
+// QUOTE FORM VALIDATION
+
+const form = document.getElementById('form');
+const username = document.getElementById('username');
+const email = document.getElementById('email');
+const message = document.getElementById('message');
+
+
+// Show input error alert
+function showError(input, alert) {
+  const formControl = input.parentElement;
+  formControl.className = 'quote error';
+  const small = formControl.querySelector('small');
+  small.innerText = alert;
+}
+
+// Show success message
+function showSuccess(input) {
+  const formControl = input.parentElement;
+  formControl.className = 'quote success';
+}
+
+// Check email validation
+
+function validateEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase())
+}
+
+// Event listeners
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+    
+    if (username.value === '') {
+         showError(username, 'Please, enter your name above.');
+    } else {
+        showSuccess(username);
+    }
+    
+     if (email.value === '') {
+         showError(email, 'Please, enter your email above.');
+     } else if(!validateEmail(email.value)){
+         showError(email, 'Please, enter valid email.');
+     } else {
+        showSuccess(email);
+    }
+
+     if (message.value === '') {
+        showError(message, 'Please, describe your dream project above.');
+    } else {
+        showSuccess(message);
+    }
+    
+});
