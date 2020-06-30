@@ -357,7 +357,7 @@ input[type=submit]:active {
 
 .service { padding: 0 2%; }
 
-.service p { text-align: left; }
+.service p { text-align: justify; }
 
 /* ----------------------------------------------- */
 /* SURFACING PRICE */
@@ -395,7 +395,7 @@ input[type=submit]:active {
 .surface-box p {
     font-size: 90%;
     line-height: 145%;
-    padding: 3px;
+    padding: 5px;
     }
 
 .checkmarks {
