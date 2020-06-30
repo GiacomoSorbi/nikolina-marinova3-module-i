@@ -32,7 +32,7 @@
   });
 })();
 
-// PRICE and OFFERS - offers scroller
+// PRICE and OFFERS - offers iterator
 
 const data = [
   {
@@ -124,10 +124,9 @@ function showSuccess(input) {
 }
 
 // Check email validation
-
-function validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase())
+    
+    function isEmail(email) {
+	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);    
 }
 
 // Event listeners
@@ -142,12 +141,12 @@ form.addEventListener('submit', function(e) {
     
      if (email.value === '') {
          showError(email, 'Please, enter your email above.');
-     } else if(!validateEmail(email.value)){
+     } else if(!isEmail(email.value)){
          showError(email, 'Please, enter valid email.');
      } else {
         showSuccess(email);
     }
-
+        
      if (message.value === '') {
         showError(message, 'Please, describe your dream project above.');
     } else {
