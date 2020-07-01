@@ -178,13 +178,14 @@ input[type=submit]:active {
   width: 100%;
   height: auto;
   padding: 2px 2px;
+  padding-left: 14px;
   box-shadow: 0 3px 3px #efefef;
 /*  transform: rotateY(-360deg);*/
   background-color: #fcfcfc;
 }  
 
 #menu-info-close {
-    margin-top: 15px;
+    margin-top: 14px;
     margin-right: 20px;
 }
    
@@ -316,7 +317,7 @@ input[type=submit]:active {
 .project-box {
     background-color: #fcfcfc;
     border-radius: 7px;
-    width: 100%;
+    width: 98%;
     margin: 2% 1%;
     box-shadow: 0 2px 2px #efefef;
 }
